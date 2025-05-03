@@ -5,19 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enchanting</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/small/64/000000/key-from-heart.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
     <style type="text/tailwindcss">
         /* .navitems>li>a {
             @apply p-4 hover:bg-gray-700 rounded-lg
         } */
-         h1{
+        :root {
+            --primary: rgb(88, 40, 244);
+            --primary-hover: rgb(69, 29, 200);
+        }
+
+        h1{
             font-size: 4rem;
             line-height: 1.2;
             font-weight: bold;
             margin-bottom: 1rem;
-         }
+            font-family: 'Lobster', sans-serif;
+        }
+
+        .button {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-shrink: 0;
+            text-align: center;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            padding: 0 1rem;
+            padding-left: 1rem;
+            min-height: 3.3rem;
+            font-weight: 600;
+            box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+            transition-property: transform;
+            transition-duration: .2s;
+            color: white;
+            background-color: var(--primary);
+        }
+        .button:hover {
+            background-color: var(--primary-hover);
+        }
+        .button:active{
+            transform: scale(0.95);
+        }
     </style>
 </head>
+
 <body>
     <header class="flex items-center justify-between px-8 bg-gray-800 h-20 text-white sticky top-0 z-50">
         <logo>
@@ -41,10 +77,14 @@
         </nav>
     </header>
 
-    <hero class="block bg-gray-700 text-white text-center py-24 px-10">
-        <h1 class="">Enchanting Photos & Captions</h1>
-        <p>Share your favorite Photos from FLickr and add an enchanting caption</p>
-        <a href="">Get Started</a>
+    <hero class="grid bg-gray-700 text-white text-center bg-cover bg-[url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg')]">
+        <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-40 w-full h-full"></div>
+        <div class="col-start-1 row-start-1 py-24 px-10">
+            <h1 class="">Enchanting Photos & Captions</h1>
+            <p class="text-lg font-bold mb-5">Share your favorite Photos from FLickr and add an enchanting caption</p>
+            <a class="button" href="">Get Started</a>
+        </div>
     </hero>
+
 </body>
 </html>
