@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enchanting</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/small/64/000000/key-from-heart.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style type="text/tailwindcss">
         /* .navitems>li>a {
             @apply p-4 hover:bg-gray-700 rounded-lg
         } */
+
+        [x-cloak] {
+            display: none !important;
+        }
+
         :root {
             --primary: rgb(88, 40, 244);
             --primary-hover: rgb(69, 29, 200);
@@ -88,14 +94,26 @@
         </logo>
         <nav>
             <ul class="flex items-center navitems">
-                <ll><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Home</a></ll>
-                <ll><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Create Post</a></ll>
-                <ll>
-                    <a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">
+                <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Home</a></li>
+                <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Create Post</a></li>
+                <ll x-data="{ dropdownOpen: false }" class="relative">
+                    <a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg cursor-pointer select-none" @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false">
                         <img class="h-8 rounded-full object-cover bg-teal-200" src="https://img.icons8.com/doodle/96/bart-simpson.png" alt="bart-simpson"/>
                         Chuks
-                        <img class="w-4" src="https://img.icons8.com/small/64/777777/expand-arrow.png" alt="expand-arrow"/>
+                        <img x-bind:class="dropdownOpen ? 'rotate-180 duration-300' : '' " class="w-4" src="https://img.icons8.com/small/64/777777/expand-arrow.png" alt="expand-arrow"/>
                     </a>
+                    <div 
+                        x-show="dropdownOpen" 
+                        x-cloak class="absolute right-0 bg-white text-black shadow rounded-lg w-40 p-2 z-20" 
+                        x-transition:enter="duration-300 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
+                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                    >
+                        <ul>
+                            <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="">My Profile</a></li>
+                            <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="">Log Out</a></li>
+                        </ul>
+                    </div>
                 </ll>
             </ul>
         </nav>
