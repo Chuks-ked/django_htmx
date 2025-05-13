@@ -79,26 +79,41 @@
             padding-bottom: 1rem;
         }
 
+        .titleBlip{
+            animation: 1s fadeIn;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0;}
+            10% { opacity: 0;}
+            100% { opacity: 1;}
+        }
+
     </style>
 </head>
 
 <body class="bg-gray-300">
-    <header class="flex items-center justify-between px-8 bg-gray-800 h-20 text-white sticky top-0 z-50">
-        <logo>
-            <a href="" class="flex items-center gap-1">
-                <img class="h-8 mb-1" src="https://img.icons8.com/small/64/ffffff/key-from-heart.png" alt="key-from-heart"/>
-                <span>Enchanting</span>
-            </a>
-        </logo>
-        <mobileicon class="md:hidden">
-            <a @click="mobilenavOpen = !mobilenavOpen" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
-                <img x-show="!mobilenavOpen" class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png"/> 
-                <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png"/>
-            </a>
-        </mobileicon>
+    <header x-data="{ mobilenavOpen: false }" class="md:flex items-center justify-between [&>*}:px-8 bg-gray-800 h-20 text-white sticky top-0 z-50">
+        <div class="flex items-center justify-between h-20">
+            <logo>
+                <a href="" class="flex items-center gap-1">
+                    <img class="h-8 mb-1" src="https://img.icons8.com/small/64/ffffff/key-from-heart.png" alt="key-from-heart"/>
+                    <span>Enchanting</span>
+                </a>
+            </logo>
+            <mobileicon class="md:hidden">
+                <a @click="mobilenavOpen = !mobilenavOpen" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
+                    <img x-show="!mobilenavOpen" class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png"/> 
+                    <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png"/>
+                </a>
+            </mobileicon>
+        </div>
         
-        <nav class="hidden md:block">
-            <ul class="flex items-center navitems">
+        <nav x-show="mobilenavOpen" x-cloak class="md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto mb-20 md:mb-0 absolute md:relative z-[-1]"
+            x-transition:enter="duration-300 ease-out"
+            x-transition:enter-start="opacity-0 -translate-y-96"
+            x-transition:enter-end="opacity-100 translate-y-0"
+        >
+            <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
                 <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Home</a></li>
                 <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Create Post</a></li>
                 <ll x-data="{ dropdownOpen: false }" class="relative">
@@ -127,7 +142,7 @@
     <hero class="grid bg-gray-700 text-white text-center bg-cover bg-[url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg')]">
         <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-40 w-full h-full"></div>
         <div class="col-start-1 row-start-1 py-24 px-10">
-            <h1 class="">Enchanting Photos & Captions</h1>
+            <h1 class="titleBlip">Enchanting Photos & Captions</h1>
             <p class="text-lg font-bold mb-5">Share your favorite Photos from FLickr and add an enchanting caption</p>
             <a class="button" href="">Get Started</a>
         </div>
