@@ -4,7 +4,7 @@
         <div class="text-sm text-gray-500">FLickr @ <a class="hover:underline" href="{{post.url}}" target="_blank">{{post.artist}}</a></div>
     </div>
     <figure>
-        <a href="">
+        <a href="{% url 'post' post.id %}">
             {% if post.image %}
                 <img  class="w-full" src="{{ post.image }}" alt="{{ post.title }}">
             {% else %}
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="flex items-center justify-between text-sm px-2">
-        <a class="font-bold hover:underline" href="">
+        <a class="font-bold hover:underline" href="{% url 'post' post.id %}">
             Comments
             <span class="font-light text-gray-500 ml-2">3</span>
         </a>
@@ -35,7 +35,7 @@
                 1
             </div>
             <a href="">Like</a>
-            <a href="">Edit</a>
+            <a href="{% url 'post-edit' post.id %}">Edit</a>
             <a href="{% url 'post-delete' post.id %}">Delete</a>
         </div>
     </div>
