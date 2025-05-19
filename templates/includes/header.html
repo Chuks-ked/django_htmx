@@ -1,8 +1,10 @@
+{% load static %}
+
 <header x-data="{ mobilenavOpen: false }" class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white sticky top-0 z-50">
     <div class="flex items-center justify-between h-20">
         <logo>
             <a href="{% url 'home' %}" class="flex items-center gap-1">
-                <img class="h-8 mb-1" src="https://img.icons8.com/small/64/ffffff/key-from-heart.png" alt="key-from-heart"/>
+                <img class="h-8 mb-1 " src="{% static 'images/key-from-heart.png' %}" alt="key-from-heart"/>
                 <span>Enchanting</span>
             </a>
         </logo>
@@ -19,13 +21,14 @@
         x-transition:enter-start="opacity-0 -translate-y-96"
         x-transition:enter-end="opacity-100 translate-y-0"
     >
-        <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
+    <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
+            {% if user.is_authenticated %}
             <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="">Home</a></li>
             <li><a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg" href="{% url 'post-create' %}">Create Post</a></li>
             <ll x-data="{ dropdownOpen: false }" class="relative">
                 <a class="flex items-center gap-1 h-12 px-4 hover:bg-gray-700 rounded-lg cursor-pointer select-none" @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false">
-                    <img class="h-8 rounded-full object-cover bg-teal-200" src="https://img.icons8.com/doodle/96/bart-simpson.png" alt="bart-simpson"/>
-                    Chuks
+                    <img class="h-8 rounded-full object-cover bg-teal-200" src="{{ user.profile.image.url }}" alt="bart-simpson"/>
+                    {{ user.username }}
                     <img x-bind:class="dropdownOpen ? 'rotate-180 duration-300' : '' " class="w-4" src="https://img.icons8.com/small/64/777777/expand-arrow.png" alt="expand-arrow"/>
                 </a>
                 <div 
@@ -36,11 +39,17 @@
                     x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                 >
                     <ul>
-                        <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="">My Profile</a></li>
-                        <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="">Log Out</a></li>
+                        <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="{% url 'profile' %}">My Profile</a></li>
+                        <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="{% url 'profile-edit' %}">Edit Profile</a></li>
+                        <li><a class="flex justify-center hover:bg-gray-100 rounded-md trasition duration-150" href="{% url 'account_logout' %}">Log Out</a></li>
                     </ul>
                 </div>
             </ll>
+            {% else %}
+            <li><a href="{% url 'account_login' %}">Log In</a></li>
+            <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
         </ul>
+
     </nav>
 </header>
