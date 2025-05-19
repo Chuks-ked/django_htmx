@@ -55,6 +55,7 @@ def post_create_view(request):
                 post.artist = "Unknown Artist"  # Fallback artist
 
             post.save()
+            form.save_m2m()
             return redirect('home')
         
     context = {
