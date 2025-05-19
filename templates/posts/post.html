@@ -20,8 +20,9 @@
         </a>
         <p class="text-5xl mb-10 px-4 font1">{{post.body}}</p>
         <div class="flex items-center gap-2 text-sm mb-5">
-            <a class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white" href="">Animals</a>
-            <a class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white" href="">Cute</a>
+            {% for tag in post.tags.all %}
+                <a class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white" href="">{{ tag }}</a>
+            {% endfor %}
         </div>
     </div>
     <div class="flex items-center justify-between text-sm px-2">
