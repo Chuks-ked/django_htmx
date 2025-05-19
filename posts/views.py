@@ -7,14 +7,21 @@ from django.contrib import messages
 
 # Create your views here.
 
-def home_view(request):
-    posts = Post.objects.all()
-    return render(request, 'posts/home.html', {'posts':posts})
+def home_view(request, tag=None):
+    if tag:
+        posts =  Post.objects.filter(tags__slug=tag)
+        tag = get_object_or_404(Tag, slug=tag)
+    else:
+        posts = Post.objects.all()
 
-
-def category_view(request, tag):
-    posts =  Post.objects.filter(tags__slug=tag)
-    return render(request, 'posts/home.html', {'posts':posts})
+    categories = Tag.objects.all()
+    
+    context = {
+        'posts' : posts,
+        'categories' : categories,
+        'tag' : tag,
+    }
+    return render(request, 'posts/home.html', context)
 
 
 def post_create_view(request):
