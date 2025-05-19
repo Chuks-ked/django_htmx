@@ -6,11 +6,13 @@
         <section class="card p-4">
             <h2>Categories</h2>
             <ul class="">
-                <li class="!bg-indigo-100 hover:bg-gray-100 rounded-md trasition duration-150"><a class="flex items-center p-2" href="">
+                {% for category in  categories %}
+                <li class="{% if category.slug == tag.slug %} !bg-indigo-100 hover:bg-gray-100 rounded-md trasition duration-150 {% endif %}"><a class="flex items-center p-2" href="{% url 'category' category.slug %}">
                     <img class="w-8 h-8 object-cover mr-2" src="https://img.icons8.com/small/96/null/landscape.png">
-                    <span class="font-bold text-sm">Landscape</span>
+                    <span class="font-bold text-sm">{{ category.name}}</span>
                 </a></li>
-                <li class="hover:bg-gray-100 rounded-md trasition duration-150"><a class="flex items-center p-2" href="">
+                {% endfor %}
+                <!-- <li class="hover:bg-gray-100 rounded-md trasition duration-150"><a class="flex items-center p-2" href="">
                     <img class="w-8 h-8 object-cover mr-2" src="https://img.icons8.com/small/96/null/portrait.png">
                     <span class="font-bold text-sm">People</span>
                 </a></li>
@@ -25,7 +27,7 @@
                 <li class="hover:bg-gray-100 rounded-md trasition duration-150"><a class="flex items-center p-2" href="">
                     <img class="w-8 h-8 object-cover mr-2" src="https://img.icons8.com/small/96/null/180-degrees.png">
                     <span class="font-bold text-sm">Black & White</span>
-                </a></li>
+                </a></li> -->
             </ul>
         </section>
         <section class="card p-4">
