@@ -7,7 +7,7 @@ class Post(models.Model):
     artist = models.CharField(max_length=500, null=True)
     url = models.URLField(max_length=500, null=True) 
     image = models.URLField(max_length=500, null=True, blank=True)
-    # author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='posts')
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='posts')
     body = models.TextField()
     # likes = models.ManyToManyField(User, related_name="likedposts", through="LikedPost")
     tags = models.ManyToManyField('Tag')
