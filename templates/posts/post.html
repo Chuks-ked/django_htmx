@@ -16,7 +16,7 @@
     </figure>
     <div class="px-4 mt-4">
         {% if post.author %}
-        <a class="flex items-center gap-1 mb-4" href="">
+        <a class="flex items-center gap-1 mb-4" href="{% url 'userprofile' post.author.username %}">
             <img class="w-8 h-8 rounded-full" src="{{ post.author.profile.avatar}}">
             <span class="font-bold hover:underline">{{ post.author.profile.name }}</span>
             <span class="text-sm text-gray-400" >@{{ post.author.username}}</span>
