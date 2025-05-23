@@ -26,9 +26,11 @@
                             Professional procastinator
                         {% endif %}
                     </div> 
+                    {% if user == profile.user %}
                     <div class="">
                         <a class="flex justify-center bg-gray-300 mx-5 hover:bg-gray-500 rounded-md trasition duration-150" href="{% url 'profile-edit' %}">Edit Profile</a>
                     </div> 
+                    {% endif %}
                 </div>
             </div>
         </div>
