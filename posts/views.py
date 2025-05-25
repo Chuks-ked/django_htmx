@@ -113,8 +113,11 @@ def post_edit_view(request, pk):
 
 def post_page_view(request, pk):
     post = get_object_or_404(Post, id=pk)
+    commentform =  CommentCreateForm()
 
     context = {
-        "post":post,        
+        "post" :post,
+        "commentform ":commentform,
     }
+    
     return render(request, 'posts/post_page.html', context)
