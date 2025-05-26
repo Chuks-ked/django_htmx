@@ -9,5 +9,5 @@ urlpatterns = [
     path('post/delete/<pk>/', post_delete_view, name='post-delete'),
     path('post/edit/<pk>/', post_edit_view, name='post-edit'),
     path('post/<pk>/', post_page_view, name='post'),
-
+    path('commentsent/<pk>/', comment_sent, name='comment-sent'),
 ]
