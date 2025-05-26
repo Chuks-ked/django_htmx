@@ -119,5 +119,28 @@ def post_page_view(request, pk):
         "post" :post,
         "commentform ":commentform,
     }
-    
+
     return render(request, 'posts/post_page.html', context)
+
+
+@login_required 
+def comment_sent(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    # replyform = ReplyCreateForm()
+    
+    if request.method == 'POST':
+        form = CommentCreateForm(request.POST)
+        if form.is_valid:
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.parent_post = post            
+            comment.save()
+            
+    context = {
+        'post' : post,
+        'comment': comment,
+        # 'replyform': replyform
+    }
+
+    # return render(request, 'snippets/add_comment.html', context)
+    return redirect('post', post.id)
